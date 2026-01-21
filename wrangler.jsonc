@@ -1,0 +1,49 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "chat-app",
+  "main": "src/server.ts",
+  "compatibility_date": "2025-02-04",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env",
+  ],
+  "observability": {
+    "enabled": true,
+  },
+  "assets": {
+    "directory": "public",
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "Chat",
+        "class_name": "Chat",
+      },
+    ],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "chat-user-id-db",
+      "database_id": "672537eb-27c1-4d97-9606-b972736c5757",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE_CHAT",
+      "id": "e1135361261a42c1b508b2e7d9be0742",
+    },
+  ],
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["Chat"],
+    },
+  ],
+  "routes": [
+    {
+      "pattern": "chat.vedgupta.in",
+      "custom_domain": true,
+    },
+  ],
+}
